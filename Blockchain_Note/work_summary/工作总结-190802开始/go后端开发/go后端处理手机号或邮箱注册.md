@@ -1,0 +1,4 @@
+## go后端处理手机号或邮箱注册
+
+[https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&tn=02003390_42_hao_pg&wd=go%E5%90%8E%E7%AB%AF%E5%A4%84%E7%90%86%E6%89%8B%E6%9C%BA%E5%8F%B7%E6%88%96%E9%82%AE%E7%AE%B1%E6%B3%A8%E5%86%8C&oq=%25E8%258E%25B7%25E5%258F%2596%25E7%25BD%2591%25E9%25A1%25B5%25E7%259A%2584uuid&rsv_pq=a468c098003582bf&rsv_t=9ea8veuTYVb2geRl558iTX4dvp4HOb0AAZEDdYz2qae48%2BZNBxht8%2FsKCafHDKBym97corKsGWzf&rqlang=cn&rsv_enter=1&rsv_dl=tb&inputT=16895&rsv_sug3=74&rsv_sug1=32&rsv_sug7=101&rsv_sug2=0&rsv_sug4=16895&rsv_sug=1](https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&tn=02003390_42_hao_pg&wd=go后端处理手机号或邮箱注册&oq=%E8%8E%B7%E5%8F%96%E7%BD%91%E9%A1%B5%E7%9A%84uuid&rsv_pq=a468c098003582bf&rsv_t=9ea8veuTYVb2geRl558iTX4dvp4HOb0AAZEDdYz2qae48%2BZNBxht8%2FsKCafHDKBym97corKsGWzf&rqlang=cn&rsv_enter=1&rsv_dl=tb&inputT=16895&rsv_sug3=74&rsv_sug1=32&rsv_sug7=101&rsv_sug2=0&rsv_sug4=16895&rsv_sug=1)
+

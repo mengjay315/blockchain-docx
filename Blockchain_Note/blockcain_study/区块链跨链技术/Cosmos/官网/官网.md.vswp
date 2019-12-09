@@ -1,0 +1,296 @@
+vnote_backup_file_826537664 /home/gaojie/Documents/vnote_notebooks/study/区块链学习/区块链跨链技术/cosmos/官网/官网.md
+# 官网
+![](_v_images/20190612185732767_132657809.png)
+
+## What is Tendermint BFT and the ABCI
+
+
+Tendermint BFT is a solution that packages the networking and consensus layers of a blockchain into a generic engine, allowing developers to focus on application development as opposed to the complex underlying protocol. As a result, Tendermint saves hundreds of hours of development time. Note that Tendermint also designates the name of the `byzantine fault tolerant (BFT)`consensus algorithm used within the Tendermint BFT engine. For more on the history of consensus protocols and BFT you can check this cool podcast by Tendermint co-founder Ethan Buchman.
+
+Tendermint BFT是一种解决方案，它将区块链的网络层和共识层打包成通用引擎，允许开发人员专注于应用程序开发而不是复杂的底层协议.Tendermint节省了数百小时的开发时间.Tendermint还指定Tendermint BFT引擎中使用的拜占庭容错（BFT）一致性算法的名称.有关共识协议和BFT历史的更多信息，您可以通过Tendermint联合创始人Ethan Buchman查看这个很出色的播客。
+
+The `Tendermint BFT engine` is connected to the application by a socket protocol called the `Application Blockchain Interface (ABCI)`. This protocol can be wrapped in any programming language, making it possible for developers to choose a language that fits their needs.
+
+Tendermint BFT引擎通过称为应用程序区块链接口（ABCI）的套接字协议连接到应用程序。这个协议可以被包装到任何编程语言中，使开发人员能够选择适合他们需求的语言.
+
+##### Tendermint BFT engine
+ - https://github.com/tendermint/tendermint
+
+##### Application Blockchain Interface (ABCI)
+- https://github.com/tendermint/tendermint/tree/master/abci
+
+`But that is not all`. Here are the properties that make Tendermint BFT a state-of-the-art blockchain engine:
+
+但这还不是全部。以下是使Tendermint BFT成为最先进的区块链引擎的特性：
+
+- **Public or private blockchain ready**: Tendermint BFT only handles networking and consensus for a blockchain, meaning that it helps nodes propagate transactions and validators agree on a set of transactions to append to the blockchain. It is the role of the application layer to define how the `validator set` is constituted. `Developers can therefore build both public and private blockchains on top of the Tendermint BFT engine`. If the application defines that validators are elected based on how many tokens they have at stake, then the blockchain can be characterised as Proof-of-Stake (PoS). If however the application defines that only a restricted set of pre-authorized entities can be validators, then the blockchain can be characterised as permissioned or private. Developers have all the freedom to customize the rules that define how the validator set of their blockchain changes.
+
+![](_v_images/20190612220113235_1706624734.png)
+
+- 公共和私有区块链准备就绪： Tendermint BFT只处理区块链的网络和共识，这意味着它帮助节点传播交易和验证器就一组要添加到区块链的交易达成一致.应用层的作用是定义验证器集的构成方式。因此，开发人员可以在Tendermint BFT引擎之上构建公共和私有区块链，如果应用程序定义验证器是根据它们股份的token数量的多少选出的，然后区块链可以被描述为股权证明（PoS），但是，如果应用程序定义只有一组受限制的预授权实体可以是验证器，然后区块链可以被描述为许可的或私有的。开发人员可以自由地定制规则，这些规则定义了区块链验证器集的更改方式。
+
+- **High Performance**: Tendermint BFT can have a block time on the order of 1 second and handle up to thousands of transactions per second.
+
+ - **高性能**：Tendermint BFT 的出块时间大约为1秒，每秒处理多达数千个交易。
+
+- **Instant finality**: A property of the Tendermint consensus algorithm is instant finality. This means that forks are never created as long as more than a third of the validators are honest (byzantine). Users can be sure their transactions are finalized as soon as a block is created (which is not the case in Proof-of-Work blockchains like Bitcoin and Ethereum).
+
+- **即时终结**：Tendermint一致性算法的特性是即时终结，这意味着只要超过三分之一的验证器是诚实的（拜占庭），就永远不会创建分叉。用户可以确保在创建区块后立即完成其交易(在比特币和以太坊等工作证明(POW)区块链中并非如此)。
+
+- **Security**: Tendermint consensus is not only fault tolerant, it is also accountable. If the blockchain forks, there is a way to determine liability.
+
+- **安全性**：Tendermint的共识不仅是容错的，而且也是负责任的。如果区块链分叉，有一种方法可以确定责任。
+
+** If the blockchain forks, there is a way to determine liability.**
+- https://github.com/tendermint/tendermint#proof-of-fork-accountability
+
+## Cosmos SDK and other application layer frameworks
+
+Tendermint BFT reduces the development time of a blockchain from years to weeks, but building a secure ABCI-app from scratch remains a difficult task. This is why the `Cosmos SDK` exists.
+
+Tendermint BFT将区块链的开发时间从数年缩短至数周，但是从头开始构建安全的ABCI应用仍然是一项艰巨的任务。这就是 `Cosmos SDK` 存在的原因。
+
+The `Cosmos SDK` is a generalized framework that simplifies the process of building secure blockchain applications on top of Tendermint BFT. It is based on two major principles:
+
+Cosmos SDK是一个通用框架，简化了在Tendermint BFT之上构建安全区块链应用程序的过程。它基于两个主要原则：
+
+- **Modularity**: The goal of the Cosmos SDK is to create an ecosystem of `modules` that allows developers to easily spin up `application-specific blockchains` without having to code each bit of functionality of their application from scratch. Anyone can create a module for the Cosmos SDK, and using ready built modules in your blockchain is as simple as importing them into your application. For example, the Tendermint team is building **a set of basic modules** that are needed for the `Cosmos Hub`. These modules can be used by any developer as they build their own application. Additionally, developers can create new modules to customize their application. As the Cosmos network develops, the ecosystem of SDK modules will expand, making it increasingly easier to develop complex blockchain applications.
+
+![](_v_images/20190613085604689_1955396288.png)
+
+- **模块化**:Cosmos SDK的目标是创建一个模块生态系统，允许开发人员轻松启动特定应用程序的区块链，而无需从头开始编写应用程序的每个功能。任何人都可以为Cosmos SDK创建一个模块，在区块链中使用现成的模块就像将它们导入应用程序一样简单。例如，Tendermint团队正在构建Cosmos Hub所需的一组基本模块。任何开发人员在构建自己的应用程序时都可以使用这些模块。此外，开发人员可以创建新模块来自定义其应用程序。随着Cosmos网络的发展，SDK模块的生态系统将得到扩展，使得开发复杂的区块链应用程序变得越来越容易。
+
+- **Capabilities-based security**: Capabilities constrain the security boundaries between modules, enabling developers to better reason about the composability of modules and limit the scope of malicious or unexpected interactions. For a deeper look at capabilities click **here**(https://cosmos.network/docs/intro/ocap.html).
+
+- **基于功能的安全性**：功能限制了模块之间的安全界线，使开发人员能够更好地推理模块的可组合性，并限制恶意或意外交互的范围。要深入了解功能，请单击此处。(https://cosmos.network/docs/intro/ocap.html).
+
+The Cosmos SDK also comes with a set of useful developer tools for building command line interfaces (CLI), REST servers and a variety of other commonly used utility libraries.
+
+Cosmos SDK还附带了一组有用的开发人员工具，用于构建命令行界面（CLI），REST服务器和各种其他常用的实用程序库。
+
+One final remark: the Cosmos SDK, like all Cosmos tools, is designed to be modular. Today, it allows developers to build on top of Tendermint BFT. However, it can be used with any other consensus engines that implements the ABCI. As time goes by, we expect multiple SDKs to emerge, built with different architecture models and compatible with multiple consensus engines - all within a single ecosystem: the Cosmos Network.
+
+最后一句话：与所有Cosmos工具一样，Cosmos SDK设计为模块化。今天，它允许开发人员在Tendermint BFT之上构建。然而，它可以与实现ABCI的任何其他共识引擎一起使用。随着时间的推移，我们期望出现多个SDK，使用不同的架构模型构建，并与多个共识引擎兼容 - 所有这些都在一个生态系统中：Cosmos Network。
+
+- **To learn how to code applications on top of the SDK you can check out this tutorial(https://cosmos.network/docs/tutorial/).**
+- 要了解如何在SDK之上编写应用程序代码，您可以查看本教程。
+
+**ETHERMINT**
+
+The great thing about the Cosmos SDK is that its modularity allows developers to port virtually any existing blockchain codebase already in Golang on top of it. For example, `Ethermint` is a project that ports the Ethereum Virtual Machine into an SDK module. Ethermint works exactly like Ethereum but also benefits from all the properties of Tendermint BFT. All the existing Ethereum tools (Truffle, Metamask, etc.) are compatible with Ethermint and you can port your smart contracts over without additional work.
+
+![](_v_images/20190613095033877_65522624.png)
+
+**Cosmos SDK的优点在于其模块化允许开发人员在Golang上移植几乎任何现有的区块链代码库。例如，Ethermint是一个将以太坊虚拟机移植到SDK模块的项目。**
+
+- **Ethermint**
+- https://github.com/cosmos/ethermint
+
+**Ethermint与以太坊完全一样，但也受益于Tendermint BFT的所有特性。所有现有的以太坊工具（Truffle，Metamask等）都与Ethermint兼容，你无需额外工作即可移植智能合约。**
+
+- **Why bother creating a blockchain with the Cosmos SDK when I can just deploy my decentralized application on top of a Virtual Machine blockchain?**
+
+- **当我可以在虚拟机区块链上部署我的去中心化应用程序时，为什么还要麻烦使用Cosmos SDK创建区块链呢？**
+
+This question is justified, considering that most decentralized applications today are developed on top of Virtual Machine blockchains like Ethereum. First, it should be stated that the reason for this phenomenon is that up until now blockchains were much more difficult to develop than Smart Contracts. This is not the case anymore, thanks to the Cosmos SDK. Now, developers can easily develop entire application-specific blockchains, which have several advantages. Among others, they give more flexibility, security, performance and sovereignty. To learn more about application-specific blockchains read this `post`. Of course, if you don’t want to build your own blockchain, you can still make your Smart Contracts compatible with Cosmos by deploying them on Ethermint.
+
+这个问题是合乎情理的，考虑到当今大部分像Ethereum的去中心化应用是在虚拟机区块链之上构建的。首先，应该指出，造成这种现象的原因是，到目前为止，区块链比智能合约更难开发。由于Cosmos SDK，这不再是问题。现在，开发人员可以轻松开发整个特定应用程序的区块链，这些区块链有几个优点。其中，它们提供了更大的灵活性，安全性，性能和主权。要了解有关特定应用程序区块链的更多信息，请阅读此文章(https://blog.cosmos.network/why-application-specific-blockchains-make-sense-32f2073bfb37)。当然，如果您不想构建自己的区块链，您仍然可以通过在Ethermint上部署智能合约来使其与Cosmos兼容。
+
+## Connecting Blockchains Together - IBC
+- IBC，把区块链连接在一起
+
+Now that developers have a way to quickly build customized blockchains, let us see how to connect these blockchains together. The connection between blockchains is achieved through a protocol called **Inter-Blockchain Communication protocol (IBC)(https://blog.cosmos.network/developer-deep-dive-cosmos-ibc-5855aaf183fe)**. IBC leverages the instant finality property of Tendermint consensus (although it can work with any “fast-finality” blockchain engine) to allow **heterogeneous chains to transfer value (i.e. tokens) or data to each other.**
+
+既然开发人员有办法快速构建自定义区块链，那么让我们看看如何将这些区块链连接在一起。区块链之间的连接是通过称为**区块链间通信协议（IBC）的协议**实现的。IBC利用Tendermint共识的即时终结性（尽管它可以与任何“快速终结”区块链引擎一起使用），以允许各种各样的链将值（token）或数据相互转移。
+
+### **WHAT ARE HETEROGENEOUS CHAINS?**
+
+Essentially it comes down to two things:
+- 基本上它归结为两件事：
+
+- **Different layers**: Heterogeneous chains have different layers, meaning they can differ in how they implement the networking, consensus and application parts. To be compatible with IBC, a blockchain needs only follow a few requirements, the main one being that the consensus layer must have fast finality. Proof-of-Work chains (like Bitcoin and Ethereum) do not fall in this category, as they have probabilistic finality.
+
+- **不同的层次**:Heterogeneous chains有不同的层次，意味着他们在实现网络，共识和应用部分方面可能会有所不同，为了与IBC兼容，区块链只需要遵循一些要求，主要的一点是共识层必须具有快速的最终性。工作量证明链（如比特币和以太坊）不属于这一类，因为它们具有概率最终性。
+
+- **Sovereignty**: Every blockchain is maintained by a set of validators whose job is to agree on the next block to commit to the blockchain. In Proof-of-Work blockchains these validators are called miners. A sovereign blockchain is a blockchain with its own validator set. In many instances it is important for blockchains to be sovereign, as validators are ultimately responsible for modifying the state. In Ethereum, applications are all run by a common set of validators. Because of this, each application only has limited sovereignty.
+
+- **主权**：每个区块链都由一组验证者维护，验证者的工作是同意下一个区块提交到区块链。在Proof-of-Work区块链中，这些验证者称为矿工。主权区块链是具有自己的验证者集的区块链。在许多情况下，有主权的区块链是至关重要的，因为验证者最终负责修改状态。在以太坊中，应用程序运行依赖一组通用的验证者。因此，每个应用程序只有有限的主权。
+
+**IBC** allows heterogeneous blockchains to transfer tokens and data to each other, meaning that blockchains with different applications and validator sets are interoperable. For example, it allows public and private blockchains to transfer tokens to each other. Currently, no other blockchain framework enables this level of interoperability.
+
+**IBC**允许 heterogeneous 区块链将token和数据相互转移,意味着具有不同应用程序和验证者集的区块链是可互操作的。例如，它允许公共和私有区块链相互转移token。目前，没有其他区块链框架能够实现这种级别的互操作性。
+
+### HOW IBC WORKS
+
+The principle behind IBC is fairly simple. Let us take an example where an account on chain A wants to send 10 tokens (let us call them `ATOM`) to chain B.
+
+![](_v_images/20190613122622984_1499564786.png)
+
+IBC背后的原理是相当简单的。让我们举一个例子，链A上的一个帐户想要发送10个token（让我们称之为ATOM）到链B.
+
+**Tracking-追踪**
+
+Continuously, chain B receives the headers of chain A, and vice versa. This allows each chain to track the validator set of the other. In essence, each chain runs a`light-client` of the other.
+
+![](_v_images/20190613152249010_1269065749.png)
+
+连续地，chainB和chainA都在接收对方的头。这允许每个链跟踪另一个链的验证者集。本质上，每一个链都运行着另一链的 `轻客户端`。
+
+**Bonding-绑定**
+
+When the IBC transfer is initiated, the ATOM are locked up (bonded) on chain A.
+
+![](_v_images/20190613152513958_867774901.png)
+
+当IBC交易发起时，ATOM被锁定在chain A上。
+
+**Proof Relay-证明传递**
+
+Then, a proof that the 10 ATOM are bonded is relayed from chain A to chain B.
+
+然后，将10个绑定的ATOM的证明从链A转发到链B.
+
+**Validation-验证**
+
+The proof is verified on chain B against chain A’s header and, if it is valid, then 10 ATOM-vouchers are created on chain B. 
+
+证明在chain B上通过chainA的header被验证，如果有效，则在链B上创建10个ATOM凭证。
+
+Note that the ATOM that have been created on chain B are not real ATOM, as ATOM only exist on chain A. They are a representation on B of ATOM from chain A, along with a proof that these ATOM are frozen on chain A.
+
+**注意，在链B上创建的ATOM不是真正的ATOM，因为ATOM仅存在于链A上。它们是来自链A的ATOM在B上的表示，以及证明这些ATOM在链A上被冻结。**
+
+A similar mechanism is used to unlock ATOM when they come back to their origin chain. For a more comprehensive description of the IBC protocol, you can look at this** specification**.
+
+- **类似的机制用于在ATOM返回其原始链时解锁ATOM。有关IBC协议的更全面描述，您可以查看此规范。**
+- 规范：https://github.com/cosmos/cosmos-sdk/tree/master/docs/spec/ibc
+
+## Designing the “Internet of Blockchains(设计"区块链互联网")”
+
+IBC is a protocol that allows two heterogeneous blockchains to transfer tokens to each other. From there, how do we create a network of blockchains?
+
+IBC是一种允许两个异构区块链相互转移token的协议。从那里，我们如何创建区块链网络？
+
+One idea is to connect each blockchain in the network with every other via direct IBC connections. The main problem with this approach is that the number of connections in the network grows quadratically with the number of blockchains. If there are 100 blockchains in the network and each needs to maintain an IBC connection with every other, that is 4950 connections. This quickly gets out of hand.
+
+一种想法是通过直接IBC连接将网络中的每个区块链彼此连接起来。这种方法的主要问题是网络中的连接数量随着区块链的数量呈二次方式增长。如果网络中有100个区块链，并且每个区块链需要彼此保持IBC连接，那就是4950个连接。这很快就会失控。
+
+To solve this, Cosmos proposes a modular architecture with two classes of blockchain: `Hubs and Zones`. Zones are regular heterogenous blockchains and Hubs are blockchains specifically designed to connect Zones together. When a Zone creates an IBC connection with a Hub, it can automatically access (i.e. send to and receive from) every other Zone that is connected to it. As a result, each Zone only needs to establish a limited number of connections with a restricted set of Hubs. Hubs also prevent double spending among Zones. This means that when a Zone receives a token from a Hub, it only needs to trust the origin Zone of this token and the Hub.
+
+![](_v_images/20190613162141182_1622796441.png)
+![](_v_images/20190613162204405_1581257730.png)
+
+为了解决这个问题，Cosmos提出了一种模块化架构，它具有两类区块链：中心和空间。Zones是常规的异构区块链，而Hub是专门设计用于将Zones连接在一起的区块链。当Zone与Hub建立IBC连接时，它可以自动访问（即发送和接收）与其连接的每个其他zone。因此，**每个Zone只需要与一组受限的Hub建立有限数量的连接**。**Hub还可以防止Zones内的双重支出。这意味着当Zone从Hub接收token时，它只需要信任此token的原始Zone和Hub**。
+
+The first Hub launched in the Cosmos Network is the Cosmos Hub. The Cosmos Hub is a public Proof-of-Stake blockchain whose native staking token is called the ATOM, and where `transactions fees` will be payable in multiple tokens. The launch of the Hub also marks the launch of the Cosmos network.
+
+![](_v_images/20190613164015660_73150889.png)
+
+在Cosmos Network中发起的第一个Hub是Cosmos Hub。 Cosmos Hub是一个公共的Proof-of-Stake区块链，其原生股份token称为ATOM，交易费用将在多个token中支付。Hub的推出(https://cosmos.network/launch)也标志着Cosmos网络的推出。
+
+## Bridging non-Tendermint chains(桥接 non-Tendermint chains)
+
+So far, the architecture of Cosmos we have presented shows how Tendermint-based chains can interoperate. But Cosmos is not limited to Tendermint chains. In fact, any kind of blockchain can be connected to Cosmos.
+
+到目前为止，我们展示的Cosmos架构表明了基于Tendermint的链如何互操作。但Cosmos不仅限于Tendermint 链。事实上，任何类型的区块链都可以连接到Cosmos。
+
+We have two cases to distinguish: fast-finality chains and probabilistic-finality chains.
+
+我们有两个情况需要区分：快速终结链和概率终结链。
+
+**FAST-FINALITY CHAINS**
+
+Blockchains that use any fast-finality consensus algorithms can connect with Cosmos by adapting IBC. For example, if Ethereum were to switch to Casper FFG (Friendly Finality Gadget), a direct connection could be established between it and the Cosmos Ecosystem by adapting IBC to work with Casper.
+
+使用任何快速终结共识算法的区块链可以通过调整IBC与Cosmos连接。例如，如果以太坊要切换到Casper FFG（友好终结小工具），可以通过调整IBC与Casper合作，在它与Cosmos生态系统之间建立直接联系。
+
+**PROBABILISTIC-FINALITY CHAINS**
+
+For blockchains that do not have fast-finality, like Proof-of-Work chains, things get a bit trickier. For these chains we use a special kind of proxy-chain called a Peg-Zone.
+
+对于没有快速终结性的区块链，比如工作证明链，事情变得有点棘手。对于这些链，我们使用一种称为**Peg-Zone**的特殊代理链。
+
+![](_v_images/20190613173630626_1740292865.png)
+![](_v_images/20190613173738256_1375283695.png)
+
+- **Peg-Zone**
+- https://blog.cosmos.network/the-internet-of-blockchains-how-cosmos-does-interoperability-starting-with-the-ethereum-peg-zone-8744d4d2bc3f
+
+A Peg-Zone is a blockchain that tracks the state of another blockchain. The Peg-Zone itself has fast-finality and is therefore compatible with IBC. Its role is to establish finality for the blockchain it bridges. Let us look at the following example.
+
+Peg-Zone是一个跟踪另一个区块链状态的区块链。Peg-Zone本身具有快速终结性，因此与IBC兼容。它的作用是为它所搭建的区块链建立终结性。我们来看下面的例子。
+
+**Example: Ethereum Peg-Zone**
+
+- We want to bridge the Proof-of-Work Ethereum blockchain to make it possible to send tokens back and forth between Ethereum and Cosmos. Because Proof-of-Work Ethereum does not have fast-finality, we need to create a Peg-Zone to act as a bridge between the two.
+
+- 我们想要桥接工作量证明以太坊区块链，以便能够在以太坊和Cosmos之间来回发送token。由于工作量证明以太坊没有快速终结性，我们需要创建一个Peg-Zone作为两者之间的桥梁。
+
+- First, the Peg-Zone needs to decide on a finality threshold for the origin chain. For example, it can consider that a given block of the origin’s chain is final when 100 blocks have been added after it.
+
+- 首先，Peg-Zone需要决定原始链的终结性临界值。例如，它可以认为原始链的给定区块在其后添加了100个区块时是最终的。
+
+- Second, a contract is deployed on the main Ethereum blockchain. When users want to send tokens from Ethereum to Cosmos, they start by sending tokens to this contract. Then the contract freezes the assets and after 100 blocks, a representation of these assets is released on the Peg-Zone. A similar mechanism is used to send assets back to the Ethereum chain.
+
+- 第二，一个合约被部署在以太坊主链上，当用户想从以太坊发送tokens到Cosmos时，他们先向这个合约发送tokens, 然后合约在100个区块后冻结资产，这些资产的代表在Peg-Zone上公布。一个相似的机制是从Cosmos发送资产到以太坊区块链。
+
+Interestingly enough, the Peg-Zone also allows users to send any token that lives on Cosmos to the Ethereum chain (the Cosmos tokens would be represented as ERC20 on the Ethereum chain). The Tendermint team is currently working on a Peg-Zone implementation for the Ethereum chain called` Peggy`.
+
+有趣的是，Peg-Zone还允许用户将存在于Cosmos上的任何token发送到以太坊链（Cosmos token将在以太坊链上表示为ERC20）。Tendermint团队目前正致力于以太坊链的Peg-Zone实现，名为**Peggy(https://github.com/cosmos/peggy)**。
+
+Peg-Zones will need to be customized for the particular chain they bridge. Building an Ethereum Peg-Zone is relatively simple because Ethereum is account-based and has smart-contracts. However, building a Bitcoin Peg-Zone is a bit more challenging. Explaining how to build a Bitcoin-like Peg-Zone is out-of-scope for this intro but know that it is theoretically possible. If you want to learn more about Peg-Zones you can take a look at this `spec`.
+
+Peg-Zones需要针对他们桥接的特定链进行定制。建立以太坊Peg-Zone相对简单，因为以太坊是基于账户的，并且拥有智能合约。然而，建立一个比特币Peg-Zone更具挑战性。解释如何建立一个类似比特币的Peg-Zone是超出了这个介绍的范围，但是知道它在理论上是可行的。如果您想了解有关Peg-Zones的更多信息，可以查看此规范。
+
+- **spec**:https://github.com/cosmos/peggy/tree/master/spec
+
+## Solving Scalability(解决可扩展性)
+
+Now that we can easily create and connect blockchains there is one final issue to tackle: Scalability. Cosmos leverages two types of scalability:
+
+现在我们可以轻松地创建和连接区块链，还有一个最后的问题需要解决：可扩展性。 Cosmos利用两种类型的可扩展性：
+
+- **Vertical scalability**: This encompasses the methods for scaling the blockchain itself. By moving away from Proof-of-Work and optimizing its components, Tendermint BFT can reach thousands of transactions per-second. The bottleneck factor is the application itself. For example, an application like a Virtual Machine (e.g. the Ethereum Virtual Machine) will impose a much lower limit on the transaction throughput than an application where transaction types and `state transition` functions are directly embedded in it (e.g. a standard Cosmos SDK application). This is one of the reasons why application-specific blockchains make sense (read about more reasons here).
+
+![](_v_images/20190613184842160_625323712.png)
+
+- **垂直可扩展性**:这包括用于衡量区块链本身的方法。通过摆脱工作量证明并优化其组件，Tendermint BFT每秒可以达到数千笔交易。瓶颈因素是应用程序本身。例如，类似于虚拟机（例如以太坊虚拟机）的应用程序将比交易类型和状态转换函数直接嵌入其中的应用程序(例如Cosmos SDK)对交易吞吐量施加更低的限制。这是特定于应用程序的区块链有意义的原因之一。
+- （在此处阅读更多原因）(https://blog.cosmos.network/why-application-specific-blockchains-make-sense-32f2073bfb37)。
+
+- **Horizontal scalability**: Even if the consensus engine and the application are highly optimized, at some point the transaction throughput of a single chain inevitably hits a wall it cannot surpass. That is the limit of vertical scaling. To go beyond it, the solution is to move to multi-chain architectures. The idea is to have multiple parallel chains running the same application and operated by a common validator set, making blockchains theoretically infinitely scalable. Details about horizontal scalability are fairly complex and out-of-scope for this intro.
+
+- **水平可扩展性**:即使共识引擎和应用程序得到高度优化，在某个时刻，单个链的交易吞吐量也不可避免地会达到它无法超越的壁垒。这是垂直缩放的限制。超越它，**解决方案是转向多链架构。我们的想法是让多个并行链运行相同的应用程序，并由一个通用的验证器集操作，使区块链在理论上无限可扩展**。有关水平可伸缩性的详细信息相当复杂，并且超出了此简介的范围。
+
+
+![](_v_images/20190613190818349_1224573581.png)
+
+Cosmos will offer very good vertical scalability at launch, which will be a major improvement over current blockchain solutions in and of itself. Later, after the completion of the IBC module, horizontal scalability solutions will be implemented.
+
+Cosmos将在发布时提供非常好的垂直可扩展性，这将是对当前区块链解决方案本身的重大改进。之后，在完成IBC模块后，将实施水平可扩展性解决方案。
+
+## So in the end, what is Cosmos?
+
+![](_v_images/20190613191555108_539238932.png)
+
+Hopefully by now you have a clearer picture of the Cosmos project. Here is a quick recap of what Cosmos is in three concise points:
+
+希望到现在你能更清楚地了解Cosmos项目。以下简要回顾一下Cosmos的三个简要要点：
+
+- 1.Cosmos makes blockchains powerful and easy to develop with Tendermint BFT and the modularity of the Cosmos SDK.
+- 1.Cosmos使用Tendermint BFT和Cosmos SDK的模块化功能，使区块链更强大且易于开发。
+
+- 2.Cosmos enables blockchains to transfer value with each other through IBC and Peg-Zones, while letting them retain their sovereignty.
+- 2.Cosmos使区块链能够通过IBC和Peg-Zones相互转移值，同时让他们保持主权。
+
+- 3.Cosmos allows blockchain applications to scale to millions of users through horizontal and vertical scalability solutions.
+- 3.Cosmos允许区块链应用程序通过水平和垂直可扩展性解决方案扩展到数百万用户。
+
+More than anything, Cosmos is not a product but an `ecosystem` built on a set of modular, adaptable and interchangeable tools. Developers are encouraged to join the effort to improve existing tools and create new ones in order to make the promise of blockchain technology a reality. These tools are the foundation needed to create the decentralized internet and global financial system of tomorrow.
+
+最重要的是，Cosmos不是一个产品，而是一个基于一系列模块化，适应性强和可互换工具的生态系统。鼓励开发人员加入努力，改进现有工具并创建新工具，使区块链技术的承诺成为现实。这些工具是创建未来去中心化互联网和全球金融体系所需的基础。
+
+## GOING FURTHER(进一步)
+
+- **Read** the `Cosmos whitepaper` --https://cosmos.network/whitepaper
+- **Start** `developing on Cosmos` --https://cosmos.network/developers
+

@@ -1,0 +1,124 @@
+## meteor框架
+
+### Meteor 框架
+
+### **安装：**
+
+https://www.meteor.com/install
+
+On Linux/macOS, use this line:
+
+```bash
+curl https://install.meteor.com/ | sh
+```
+
+### Uninstalling Meteors
+
+Aside from a short launcher shell script, Meteor installs itself inside your home directory. To uninstall Meteor, run:
+
+```bash
+rm -rf ~/.meteor/
+sudo rm /usr/local/bin/meteor
+```
+
+Meteor 是一个构建在 Node.js 之上的平台，用来开发实时网页程序。
+
+Meteor 位于程序数据库和用户界面之间，保持二者之间的数据同步更新。
+
+因为 Meteor 是基于 Node.js 开发的，所以在客户端和服务器端都使用 JavaScript 作为开发语言。而且，Meteor 程序的代码还能在前后两端共用。
+
+Meteor 这个平台很强大，网页程序开发过程中的很多复杂、容易出错的功能都能抽象出来，实现起来很简单。
+
+https://www.w3cschool.cn/discovermeteor/rbj81jjm.html
+
+https://www.meteor.com/
+
+-------------
+
+meteor框架使用了MongoDB数据库，如果运行时换了新的链，所以再次编译运行时如果出错，可以重置一下，会清除编译生成的的文件，
+
+包括数据库 （db）文件。
+
+**meteor reset** (清楚所有的数据)
+
+**查看进程：**
+
+ps -ef | grep meteor 
+
+------
+
+查看币价：
+
+根据这个api地址可以查询币价
+
+https://www.coingecko.com/en
+
+![image-20191018101632316](assets/image-20191018101632316.png)
+
+```js
+Meteor.methods({
+    'coinStats.getCoinStats': function(){
+        this.unblock();
+        let coinId = Meteor.settings.public.coingeckoId;
+        if (coinId){
+            try{
+                let now = new Date();
+                now.setMinutes(0);
+                let url = "https://api.coingecko.com/api/v3/simple/price?ids="+coinId+"&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true&include_last_updated_at=true";
+```
+
+------------
+
+### 在某个目录下，执行下面的命令，则默认开启 `http://127.0.0.1:8000`，
+
+python -m SimpleHTTPServer
+
+则该目录下的文件都在 8000目录下，如下：
+
+http://127.0.0.1:8000/file
+
+-------------
+
+## Meteor部署在CentOS环境下
+
+https://www.wandouip.com/t5i14266/
+
+### meteor 连接外置MongoDB
+
+https://cloud.tencent.com/developer/ask/99322
+
+### Meteor部署 (Nginx+pm2+mongodb)
+
+https://www.jianshu.com/p/6db84b83ac39
+
+### Windows开发环境 Meteor + MongoDB 独立环境部署团队多端协作开发配置从入门到把坑填平
+
+https://www.jianshu.com/p/a7bab365defa
+
+### 创建一个meteor项目
+
+https://blog.csdn.net/Long861774/article/details/82588625
+
+### Meteor 开发环境 mongodb 的连接
+
+https://www.mycode.net.cn/database/1362.html
+
+### 使用 meteor shell 进行管理
+
+通过 meteor shell 管理 mongodb 不需要指定端口，你只要在 meteor 项目启动后的项目目录下执行 `meteor mongo` 就可以连接到数据库了。如下：
+
+```
+myCode:~/Project/microduino$ meteor mongo
+MongoDB shell version: 2.6.7
+connecting to: 127.0.0.1:3001/meteor
+meteor:PRIMARY>
+```
+
+这样就连接到了当前项目的 mongodb 数据库，通过 `help` 命令可以看到帮助。
+
+![image-20191021092837847](assets/image-20191021092837847.png)S
+
+----
+
+### 
+
